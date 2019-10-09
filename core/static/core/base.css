@@ -1,0 +1,64 @@
+html {
+    font-family: 'Oswald', sans-serif;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: medium;
+    font-weight: 200;
+    margin: 0;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.header {
+    background-color: black;
+    color: white;
+    margin: 0;
+}
+
+.header-title {
+    display: inline;
+    margin: 0;
+    padding: 0 10px 0 4px;
+    white-space: nowrap;
+}
+
+.header-nav {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.header-nav-item {
+    display: inline;
+    margin: 0 5px 0 5px;
+    color: white;
+}
+
+.header-nav-item:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+.header-nav-item > a:visited {
+    color: white;
+}
+
+.content {
+    margin: 0 8px 0 8px;
+}

@@ -1,0 +1,39 @@
+.post-list {
+    display: block;
+    width: 100%;
+}
+
+.post-list-item {
+    display: block;
+    width: 100%;
+}
+
+.post-headline {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-preview {
+    display: -webkit-box;
+    padding: 0;
+    margin: 0;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.post-detail-headline {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+}
+
+.post-text {
+    padding: 0;
+    margin: 0;
+    font-weight: 200;
+}

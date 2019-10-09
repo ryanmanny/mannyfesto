@@ -1,0 +1,13 @@
+{# Maybe cache #}
+<div class="header container">
+    <div class="row">
+        <h1 class="header-title">The Mannyfesto</h1>
+        <ul class="header-nav">
+            {% for item in nav_items %}
+            <li class="header-nav-item">
+                <a href="{{ item.link }}">{{ item.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
