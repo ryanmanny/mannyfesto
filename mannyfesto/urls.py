@@ -14,10 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from core import views as core_views
-from cribbage import views as cribbage_views
 
 
 urlpatterns = [
@@ -26,8 +25,7 @@ urlpatterns = [
     path('blog/<slug>/', core_views.blog_post_detail, name='blog_post'),
     path('stories/', core_views.stories_list, name='stories'),
     path('stories/<slug>/', core_views.story_detail, name='story'),
-    path('cribbage/', cribbage_views.cribbage_home, name='cribbage'),
-    path('cribbage/<slug>/', cribbage_views.cribbage_detail, name='cribbage_post'),
+    path('cribbage/', include('cribbage.urls')),
     path('about/', core_views.about, name='about'),
     path('admin/', admin.site.urls),
 ]

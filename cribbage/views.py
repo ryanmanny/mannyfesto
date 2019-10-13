@@ -1,15 +1,14 @@
 from django.shortcuts import render
-from django.shortcuts import get_object_or_404
 
-from . import models
+from django.http import HttpResponseNotFound
+from django.template.exceptions import TemplateDoesNotExist
 
 
 def cribbage_detail(request, slug):
-    cribbage = get_object_or_404(models.CribbagePost, slug=slug)
-
-    return render(request, 'core/post.html', {
-        'post': cribbage,
-    })
+    try:
+        return render(request, f'cribbage/posts/{slug}.html', {})
+    except TemplateDoesNotExist:
+        return HttpResponseNotFound()
 
 
 def cribbage_home(request):
