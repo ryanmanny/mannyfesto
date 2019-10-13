@@ -24,9 +24,12 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'fake_key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not os.getenv('DJANGO_DEBUG_FALSE')
 
-ALLOWED_HOSTS = [
-    '.themannyfesto.com',
-]
+if not DEBUG:
+    ALLOWED_HOSTS = [
+        '.themannyfesto.com',
+    ]
+else:
+    ALLOWED_HOSTS = ['*']
 
 
 # Application definition
