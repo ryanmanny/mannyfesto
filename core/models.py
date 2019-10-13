@@ -67,4 +67,7 @@ class BlogPost(Post):
 
 
 class Story(Post):
+    class Meta:
+        verbose_name_plural = 'stories'
+
     detail_view_name = 'story'
