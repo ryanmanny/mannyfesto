@@ -1,25 +1,23 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-    <div class="container">
-        {% if posts.exists %}
-            <div class="post-list">
-            {% for post in posts %}
-                {# Post list view #}
-                <div class="post-list-item">
-                    <h2 class="post-headline">
-                        <a href="{{ post.get_absolute_url }}">
-                            {{ post.title }}
-                        </a>
-                    </h2>
-                    <div class="post-preview">
-                        {{ post.preview }}
-                    </div>
-                </div>
-            {% endfor %}
+{% if posts.exists %}
+    <div class="post-list">
+    {% for post in posts %}
+        {# Post list view #}
+        <div class="post-list-item">
+            <h2 class="post-headline">
+                <a href="{{ post.get_absolute_url }}">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <div class="post-preview">
+                {{ post.preview }}
             </div>
-        {% else %}
-            No posts here
-        {% endif %}
+        </div>
+    {% endfor %}
     </div>
+{% else %}
+    No posts here
+{% endif %}
 {% endblock %}

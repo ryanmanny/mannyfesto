@@ -1,10 +1,8 @@
 {% extends 'core/base.html' %}
 {% block content %}
-<div class="container">
-    <h2 class="post-detail-headline">{{ post.title }}</h2>
-    {# Preformatted HTML #}
-    <div class="post-text">
-        {{ post.text | safe }}
-    </div>
+<h2 class="post-detail-headline">{{ post.title }}</h2>
+{# Preformatted HTML #}
+<div class="post-text">
+    {{ post.text | safe }}
 </div>
 {% endblock %}
