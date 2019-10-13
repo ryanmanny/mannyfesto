@@ -11,6 +11,7 @@ def header(request):
         'nav_items': [
             NavItem('Blog', reverse('blog')),
             NavItem('Short Stories', reverse('stories')),
+            NavItem('Cribbage', reverse('cribbage')),
             NavItem('About', reverse('about')),
         ]
     }

@@ -16,14 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from core import views
+from core import views as core_views
+from cribbage import views as cribbage_views
+
 
 urlpatterns = [
-    path('', views.home, name=''),
-    path('blog/', views.blog_post_list, name='blog'),
-    path('blog/<slug>/', views.blog_post_detail, name='blog_post'),
-    path('stories/', views.stories_list, name='stories'),
-    path('stories/<slug>/', views.story_detail, name='story'),
-    path('about/', views.about, name='about'),
+    path('', core_views.home, name=''),
+    path('blog/', core_views.blog_post_list, name='blog'),
+    path('blog/<slug>/', core_views.blog_post_detail, name='blog_post'),
+    path('stories/', core_views.stories_list, name='stories'),
+    path('stories/<slug>/', core_views.story_detail, name='story'),
+    path('cribbage/', cribbage_views.cribbage_home, name='cribbage'),
+    path('cribbage/<slug>/', cribbage_views.cribbage_detail, name='cribbage_post'),
+    path('about/', core_views.about, name='about'),
     path('admin/', admin.site.urls),
 ]
