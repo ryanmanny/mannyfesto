@@ -1,43 +1,56 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from . import models
+from . import forms
 
 
 # Create your views here.
 def home(request):
-    return redirect('blog')
+    return redirect('post_list', category_slug='blog')
 
 
-def blog_post_list(request):
-    posts = models.BlogPost.objects.all()
+def post_list(request, category_slug):
+    if category_slug in models.Post.CATEGORIES:
+        return render(request, 'core/post_list.html', {
+            'posts': models.Post.objects.filter(category=category_slug),
+        })
+    elif category_slug in models.HTMLPost.CATEGORIES:
+        if category_slug == 'cribbage':
+            return render(request, 'cribbage/cribbage_home.html', {})
 
-    return render(request, 'core/post_list.html', {
-        'posts': posts,
-    })
-
-
-def stories_list(request):
-    stories = models.Story.objects.all()
-
-    return render(request, 'core/post_list.html', {
-        'posts': stories,
-    })
+    raise ValueError("This category doesn't exist")
 
 
-def blog_post_detail(request, slug):
-    blog_post = get_object_or_404(models.BlogPost, slug=slug)
+def post_detail(request, category_slug, post_slug):
+    if category_slug in models.HTMLPost.CATEGORIES:
+        model = models.HTMLPost
+    else:
+        model = models.Post
 
-    return render(request, 'core/post.html', {
-        'post': blog_post,
-    })
-
-
-def story_detail(request, slug):
-    story = get_object_or_404(models.Story, slug=slug)
+    post = get_object_or_404(model, category=category_slug, slug=post_slug)
 
     return render(request, 'core/post.html', {
-        'post': story,
+        'post': post,
+        'comment_form': forms.CommentForm(),
     })
+
+
+def comment(request, category_slug, post_slug):
+    if category_slug in models.HTMLPost.CATEGORIES:
+        model = models.HTMLPost
+    else:
+        model = models.Post
+
+    post = get_object_or_404(model, category=category_slug, slug=post_slug)
+
+    comment_obj = models.Comment(
+        author=request.POST['author'],
+        text=request.POST['text'],
+    )
+
+    post.comments.add(comment_obj, bulk=False)
+
+    return redirect(post.get_absolute_url())
 
 
 def about(request):

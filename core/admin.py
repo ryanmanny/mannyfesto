@@ -1,13 +1,21 @@
 from django.contrib import admin
+from django.contrib.contenttypes.admin import GenericTabularInline
+
 from . import models
 
 
-# Register your models here.
-@admin.register(models.BlogPost)
-class BlogPostAdmin(admin.ModelAdmin):
-    readonly_fields = ('slug', 'preview')
+class CommentInline(GenericTabularInline):
+    model = models.Comment
+    extra = 1
 
 
-@admin.register(models.Story)
-class StoryAdmin(admin.ModelAdmin):
-    readonly_fields = ('slug', 'preview')
+@admin.register(models.Post)
+class PostAdmin(admin.ModelAdmin):
+    readonly_fields = ('preview',)
+    inlines = (CommentInline,)
+
+
+@admin.register(models.HTMLPost)
+class HTMLPostAdmin(admin.ModelAdmin):
+    readonly_fields = ('preview',)
+    inlines = (CommentInline,)

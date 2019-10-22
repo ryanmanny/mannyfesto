@@ -2,31 +2,41 @@ from django.db import models
 from django.utils.text import slugify
 from django.shortcuts import reverse
 
+from django.template.loader import render_to_string
+
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
+
 from ckeditor.fields import RichTextField
 
 from bs4 import BeautifulSoup
 
 
-# Create your models here.
-class Post(models.Model):
+class AbstractPost(models.Model):
     class Meta:
         abstract = True
 
-    detail_view_name = None
+    category = None
 
     title = models.CharField(max_length=120)
     slug = models.SlugField(max_length=140, blank=True)
 
-    text = RichTextField()
+    text = None
 
     # For use in the list view
     preview = models.CharField(max_length=240)
+
+    comments = GenericRelation('Comment')
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse(self.detail_view_name, kwargs={'slug': self.slug})
+        return reverse('post', kwargs={
+                'category_slug': self.category,
+                'post_slug': self.slug,
+                },
+            )
 
     def _get_unique_slug(self):
         slug = slugify(self.title)
@@ -50,24 +60,45 @@ class Post(models.Model):
         return super().save(*args, **kwargs)
 
 
-class BlogPost(Post):
-    detail_view_name = 'blog_post'
+class Post(AbstractPost):
+    CATEGORIES = ['blog', 'stories']
 
-    parent = models.ForeignKey(
-        'self',
-        related_name='children',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
+    category = models.CharField(
+        max_length=80,
+        choices=(
+            ('blog', 'Blog'),
+            ('stories', 'Stories'),
+        ),
     )
 
-    @property
-    def siblings(self):
-        return self.parent.children.exclude(pk=self.pk)
+    text = RichTextField()
 
 
-class Story(Post):
+class HTMLPost(AbstractPost):
     class Meta:
-        verbose_name_plural = 'stories'
+        verbose_name = "HTML post"
+        verbose_name_plural = "HTML posts"
 
-    detail_view_name = 'story'
+    CATEGORIES = ['cribbage']  # Default to Post
+
+    category = models.CharField(
+        max_length=80,
+        choices=(
+            ('cribbage', 'Cribbage'),
+        )
+    )
+
+    template_name = models.CharField(max_length=255)
+
+    @property
+    def text(self):
+        return render_to_string(self.template_name)
+
+
+class Comment(models.Model):
+    author = models.CharField(max_length=40)
+    text = models.TextField()
+
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')

@@ -6,7 +6,7 @@
     {% for post in posts %}
         {# Post list view #}
         <div class="post-list-item">
-            <h2 class="post-headline">
+            <h2 class="post-headline post-link">
                 <a href="{{ post.get_absolute_url }}">
                     {{ post.title }}
                 </a>

@@ -50,17 +50,17 @@ a:hover {
     color: white;
 }
 
-.header-nav-item:hover {
+.header-link:hover {
     text-decoration: underline;
     color: white;
 }
 
-.header-nav-item > a:link {
+.header-link > a:link {
     text-decoration: none;
     color: white;
 }
 
-.header-nav-item > a:visited {
+.header-link > a:visited {
     color: white;
 }
 
