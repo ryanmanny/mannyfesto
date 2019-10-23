@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-{% if posts.exists %}
+{% if posts %}
     <div class="post-list">
     {% for post in posts %}
         {# Post list view #}
