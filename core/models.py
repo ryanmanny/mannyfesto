@@ -56,18 +56,6 @@ class AbstractPost(models.Model):
         preview = BeautifulSoup(html, 'lxml').text
         return preview
 
-    def save(self, *args, **kwargs):
-        try:
-            self.refresh_from_db()
-        except self.__class__.DoesNotExist:
-            pass
-
-        if not self.slug or \
-                self.__class__.objects.filter(slug=self.slug).exists():
-            self.slug = self._get_unique_slug()
-        self.preview = self._get_preview()  # Always recalculate preview
-        return super().save(*args, **kwargs)
-
 
 class Post(AbstractPost):
     CATEGORIES = ['blog', 'stories']
