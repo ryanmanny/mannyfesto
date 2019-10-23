@@ -23,7 +23,7 @@ class AbstractPost(models.Model):
 
     author = models.CharField('written by', max_length=120)
 
-    published_on = models.DateTimeField(auto_now_add=True)
+    published_at = models.DateTimeField(auto_now_add=True)
 
     text = None
 
@@ -57,6 +57,7 @@ class AbstractPost(models.Model):
         return preview
 
     def save(self, *args, **kwargs):
+        self.refresh_from_db()
         if not self.slug or \
                 self.__class__.objects.filter(slug=self.slug).exists():
             self.slug = self._get_unique_slug()

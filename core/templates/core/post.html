@@ -1,9 +1,10 @@
 {% extends 'core/base.html' %}
+{% load tz %}
 {% block content %}
 <h1 class="post-detail-headline">{{ post.title }}</h1>
 {# Preformatted HTML #}
 <div class="post-author">{{ post.author }}</div>
-<div class="post-date">{{ post.published_on }}</div>
+<div class="post-date">{{ post.published_on | utc }} UTC</div>
 <br>
 <div class="post-text">
     {{ post.text | safe }}
