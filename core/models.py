@@ -57,7 +57,11 @@ class AbstractPost(models.Model):
         return preview
 
     def save(self, *args, **kwargs):
-        self.refresh_from_db()
+        try:
+            self.refresh_from_db()
+        except self.__class__.DoesNotExist:
+            pass
+
         if not self.slug or \
                 self.__class__.objects.filter(slug=self.slug).exists():
             self.slug = self._get_unique_slug()

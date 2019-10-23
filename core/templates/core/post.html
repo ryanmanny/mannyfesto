@@ -1,10 +1,18 @@
 {% extends 'core/base.html' %}
-{% load tz %}
+{% block head %}
+<script>
+    let date = new Date({{ post.published_at.timestamp }} * 1000);
+    let dateString = date.toLocaleString();
+    $(document).ready(() => {
+        $('.post-date').html(dateString);
+    });
+</script>
+{% endblock %}
 {% block content %}
 <h1 class="post-detail-headline">{{ post.title }}</h1>
 {# Preformatted HTML #}
 <div class="post-author">{{ post.author }}</div>
-<div class="post-date">{{ post.published_on | utc }} UTC</div>
+<div class="post-date"></div>
 <br>
 <div class="post-text">
     {{ post.text | safe }}
@@ -23,6 +31,7 @@
     </div>
     {% endif %}
 {% endwith %}
+<br>
 <div class="comment-form">
     <form action="{% url 'comment' category_slug=post.category post_slug=post.slug %}" method="POST">
         {% csrf_token %}
