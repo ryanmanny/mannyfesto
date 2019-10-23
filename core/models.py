@@ -21,6 +21,10 @@ class AbstractPost(models.Model):
     title = models.CharField(max_length=120)
     slug = models.SlugField(max_length=140, blank=True)
 
+    author = models.CharField('written by', max_length=120)
+
+    published_on = models.DateTimeField(auto_now_add=True)
+
     text = None
 
     # For use in the list view
