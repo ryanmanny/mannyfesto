@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 
 def main():
-    load_dotenv(os.path.join(os.path.abspath(__file__), '.env'))
+    load_dotenv(override=True)
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mannyfesto.settings')
     try:
         from django.core.management import execute_from_command_line

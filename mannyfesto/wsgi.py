@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 from django.core.wsgi import get_wsgi_application
 
 project_folder = os.path.expanduser('~/mannyfesto')
-load_dotenv(os.path.join(project_folder, '.env'))
+load_dotenv(os.path.join(project_folder, '.env'), override=True)
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mannyfesto.settings')
 
