@@ -13,15 +13,6 @@ body {
     margin: 0;
 }
 
-a:link {
-    text-decoration: none;
-    color: black;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 .header {
     background-color: black;
     color: white;
