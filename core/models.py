@@ -28,7 +28,7 @@ class AbstractPost(models.Model):
     text = None
 
     # For use in the list view
-    preview = models.CharField(max_length=240)
+    preview = models.CharField(max_length=1200)
 
     comments = GenericRelation('Comment')
 
