@@ -62,7 +62,7 @@ class AbstractPost(models.Model):
 
     def _get_preview(self):
         html = self.text
-        preview = BeautifulSoup(html, 'lxml').text
+        preview = BeautifulSoup(html, 'lxml').text.replace('\n', ' ')
         return preview
 
 
