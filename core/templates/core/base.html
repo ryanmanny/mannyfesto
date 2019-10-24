@@ -11,6 +11,13 @@
     <link href="{% static 'core/responsive.css' %}" rel="stylesheet">
     <link href="{% static 'core/blog.css' %}" rel="stylesheet">
     <script src="{% static 'jquery-3.4.1.min.js' %}" type="text/javascript"></script>
+    {# Open graph metadata #}
+    <meta property="og:site_name" content="The Mannyfesto"/>
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:title" content="{% block og_title %}The Mannyfesto{% endblock %}"/>
+    <meta property="og:description" content="{% block og_description %}{% endblock %}"/>
+    <meta property="og:url" content="{% block og_permalink %}{% endblock %}"/>
     {% block head %}
     {% endblock %}
 </head>

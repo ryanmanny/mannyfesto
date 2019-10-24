@@ -1,4 +1,8 @@
 {% extends 'core/base.html' %}
+{% block og_type %}article{% endblock %}
+{% block og_title %}{{ post.title }}{% endblock %}"/>
+{% block og_description %}{{ post.preview | truncatechars:90 }}{% endblock %}
+{% block og_permalink %}{{ request.build_absolute_uri }}{{ object.get_absolute_url | slice:"1:" }}{% endblock %}
 {% block head %}
 <script>
     {% if post.published %}
