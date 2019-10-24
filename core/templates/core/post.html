@@ -1,18 +1,20 @@
 {% extends 'core/base.html' %}
 {% block head %}
 <script>
+    {% if post.published %}
     let date = new Date({{ post.published_at.timestamp }} * 1000);
     let dateString = date.toLocaleString();
     $(document).ready(() => {
         $('.post-date').html(dateString);
     });
+    {% endif %}
 </script>
 {% endblock %}
 {% block content %}
 <h1 class="post-detail-headline">{{ post.title }}</h1>
 {# Preformatted HTML #}
 <div class="post-author">{{ post.author }}</div>
-<div class="post-date"></div>
+<div class="post-date">Not yet published</div>
 <br>
 <div class="post-text">
     {{ post.text | safe }}

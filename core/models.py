@@ -12,9 +12,17 @@ from ckeditor.fields import RichTextField
 from bs4 import BeautifulSoup
 
 
+class PublishedPostManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(published=True)
+
+
 class AbstractPost(models.Model):
     class Meta:
         abstract = True
+
+    objects = models.Manager()
+    published_objects = PublishedPostManager()
 
     category = None
 
@@ -23,7 +31,8 @@ class AbstractPost(models.Model):
 
     author = models.CharField('written by', max_length=120)
 
-    published_at = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField()
+    published_at = models.DateTimeField(null=True, blank=True)
 
     text = None
 
@@ -33,7 +42,7 @@ class AbstractPost(models.Model):
     comments = GenericRelation('Comment')
 
     def __str__(self):
-        return self.title
+        return f"{self.title}{' (Not published)' if not self.published else ''}"
 
     def get_absolute_url(self):
         return reverse('post', kwargs={
