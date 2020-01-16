@@ -3,12 +3,12 @@
 {% block content %}
 {% if posts %}
     <div class="post-list">
-    {% for post in posts %}
+    {% for post in posts.reverse %}
         {# Post list view #}
         <div class="post-list-item">
             <h2 class="post-headline post-link">
                 <a href="{{ post.get_absolute_url }}">
-                    {{ post.title }}
+                    {{ forloop.counter }}. {{ post.title }}
                 </a>
             </h2>
             <div class="post-preview">
