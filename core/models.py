@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.text import slugify
 from django.shortcuts import reverse
 
+from django.utils import timezone
+
 from django.template.loader import render_to_string
 
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
@@ -40,6 +42,11 @@ class AbstractPost(models.Model):
     preview = models.CharField(max_length=1200)
 
     comments = GenericRelation('Comment')
+
+    @property
+    def is_new(self):
+        """Return whether the article was published in the last week"""
+        return self.published_at > (timezone.now() - timezone.timedelta(days=7))
 
     def __str__(self):
         return f"{self.title}{' (Not published)' if not self.published else ''}"

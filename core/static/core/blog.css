@@ -9,6 +9,10 @@
     padding-bottom: 5px;
 }
 
+.post-link {
+    display: inline;
+}
+
 .post-link > a {
     color: blue;
     text-decoration: underline;
@@ -35,6 +39,14 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.alert-new {
+    background-color: red;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+/* INSIDE THE POST */
 
 .post-detail-headline {
     padding: 0;
