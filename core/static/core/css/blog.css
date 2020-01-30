@@ -68,6 +68,10 @@
     font-weight: 400;
 }
 
+.comment-section {
+    background-color: lightgray;
+}
+
 .comment-list {
 
 }
@@ -107,4 +111,8 @@
     width: 99%;
     max-width: 99%;
     resize: vertical;
+}
+
+.comment-submit {
+    width: 99%;
 }

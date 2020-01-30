@@ -22,28 +22,29 @@ $(document).ready(function() {
     {{ post.text | safe }}
 </div>
 <br>
-<div class="post-detail-headline">Comments:</div>
-{% with post.comments.all as comments %}
-    {% if comments %}
-    <div class="comment-list">
-        {% for comment in comments %}
-        <div class="comment">
-            <div class="comment-author">{{ comment.author }}</div>
-            <div class="comment-text">{{ comment.text }}</div>
+<div class="comment-section">
+    {% with post.comments.all as comments %}
+        {% if comments %}
+        <div class="comment-list">
+            {% for comment in comments %}
+            <div class="comment">
+                <div class="comment-author">{{ comment.author }}</div>
+                <div class="comment-text">{{ comment.text }}</div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <br>
+    <div class="comment-form">
+        <form action="{% url 'comment' category_slug=post.category post_slug=post.slug %}" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ comment_form.as_table }}
+            </table>
+            <button class="comment-submit" type="submit">Comment</button>
+        </form>
     </div>
-    {% endif %}
-{% endwith %}
-<br>
-<div class="comment-form">
-    <form action="{% url 'comment' category_slug=post.category post_slug=post.slug %}" method="POST">
-        {% csrf_token %}
-        <table>
-            {{ comment_form.as_table }}
-        </table>
-        <button type="submit">Comment</button>
-    </form>
+    <br>
+    {% endblock %}
 </div>
-<br>
-{% endblock %}
