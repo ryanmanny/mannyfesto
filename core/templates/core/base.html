@@ -5,13 +5,20 @@
     <meta charset="UTF-8">
     <title>The Mannyfesto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
     <link href="{% static 'normalize.min.css' %}" rel="stylesheet"/>
 {#    <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">#}
     <link href="https://fonts.googleapis.com/css?family=Raleway:200,400&display=swap" rel="stylesheet">
+
     <link href="{% static 'core/base.css' %}" rel="stylesheet">
     <link href="{% static 'core/responsive.css' %}" rel="stylesheet">
     <link href="{% static 'core/blog.css' %}" rel="stylesheet">
+
     <script src="{% static 'jquery-3.4.1.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'moment.min.js' %}" type="text/javascript"></script>
+
+    <script src="{% static 'core/core.js' %}" type="text/javascript"></script>
+
     {# Open graph metadata #}
     <meta property="og:site_name" content="The Mannyfesto"/>
     <meta property="og:type" content="{% block og_type %}website{% endblock %}"/>

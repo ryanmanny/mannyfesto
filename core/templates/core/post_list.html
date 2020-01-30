@@ -1,5 +1,12 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% block head %}
+<script>m
+$(document).ready(function (){
+    momentConvertDuration();
+});
+</script>
+{% endblock %}
 {% block content %}
 {% if posts %}
     <div class="post-list">
@@ -13,6 +20,11 @@
                 {% if post.is_new %}
                     <small class="alert-new">NEW!</small>
                 {% endif %}
+            </div>
+            <div class="post-byline">
+                <small>
+                    <span class="moment-convert-duration">{{ post.published_at | date:"c"}}</span> &bull; {{ post.author }}
+                </small>
             </div>
             <div class="post-preview">
                 {{ post.preview }}
