@@ -55,19 +55,17 @@
 }
 
 .post-author {
-    font-size: small;
-    font-weight: 400;
+
 }
 
 .post-date {
-    font-size: small;
-    font-weight: 400;
+
 }
 
 .post-text {
     padding: 0;
     margin: 0;
-    font-weight: 200;
+    font-weight: 400;
 }
 
 .comment-list {

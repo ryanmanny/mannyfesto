@@ -13,8 +13,10 @@ $(document).ready(function() {
 {% block content %}
 <h1 class="post-detail-headline">{{ post.title }}</h1>
 {# Preformatted HTML #}
-<div class="post-author">{{ post.author }}</div>
-<div class="post-date moment-convert">{{ post.published_at | date:"c"}}</div>
+<small>
+    <span class="post-author">{{ post.author }}</span><br>
+    <span class="post-date moment-convert">{{ post.published_at | date:"c"}}</span>
+</small>
 <br>
 <div class="post-text">
     {{ post.text | safe }}
