@@ -15,8 +15,7 @@ def post_list(request, category_slug):
             'posts': models.Post.published_objects.filter(category=category_slug).order_by('published_at'),
         })
     elif category_slug in models.HTMLPost.CATEGORIES:
-        if category_slug == 'cribbage':
-            return render(request, 'cribbage/cribbage_home.html', {})
+        pass
 
     raise ValueError("This category doesn't exist")
 

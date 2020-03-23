@@ -92,12 +92,12 @@ class HTMLPost(AbstractPost):
         verbose_name = "HTML post"
         verbose_name_plural = "HTML posts"
 
-    CATEGORIES = ['cribbage']  # Default to Post
+    CATEGORIES = []  # Default to Post
 
     category = models.CharField(
         max_length=80,
         choices=(
-            ('cribbage', 'Cribbage'),
+
         )
     )
 

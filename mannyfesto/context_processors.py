@@ -22,13 +22,6 @@ def header(request):
                     'post_list',
                     kwargs={'category_slug': 'stories'}),
             ),
-            NavItem(
-                'Cribbage',
-                reverse(
-                    'post_list',
-                    kwargs={'category_slug': 'cribbage'},
-                )
-            ),
             NavItem('About', reverse('about')),
         ]
     }
