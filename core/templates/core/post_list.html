@@ -23,7 +23,7 @@ $(document).ready(function (){
             </div>
             <div class="post-byline">
                 <small>
-                    <span class="moment-convert-duration">{{ post.published_at | date:"c"}}</span> &bull; {{ post.author }}
+                    <span class="moment-convert-duration">{{ post.published_at | date:"c"}}</span> &bull; {{ post.comments.count }} comments &bull; {{ post.author }}
                 </small>
             </div>
             <div class="post-preview">
