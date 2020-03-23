@@ -10,14 +10,14 @@ def header(request):
     return {
         'nav_items': [
             NavItem(
-                'Blog',
+                'Non-Fiction',
                 reverse(
                     'post_list',
                     kwargs={'category_slug': 'blog'},
                 ),
             ),
             NavItem(
-                'Short Stories',
+                'Fiction',
                 reverse(
                     'post_list',
                     kwargs={'category_slug': 'stories'}),
