@@ -19,3 +19,11 @@ class PostAdmin(admin.ModelAdmin):
 class HTMLPostAdmin(admin.ModelAdmin):
     readonly_fields = ('preview',)
     inlines = (CommentInline,)
+
+
+@admin.register(models.AttachedImage)
+class AttachedImageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'url')
+
+    def url(self, obj):
+        return obj.image.url

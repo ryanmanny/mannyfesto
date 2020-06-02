@@ -3,3 +3,4 @@ django-ckeditor
 beautifulsoup4
 lxml
 python-dotenv
+Pillow

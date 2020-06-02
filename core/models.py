@@ -115,3 +115,11 @@ class Comment(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+
+
+class AttachedImage(models.Model):
+    name = models.CharField(max_length=80)
+    image = models.ImageField(upload_to='images')
+
+    def __str__(self):
+        return self.name
